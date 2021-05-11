@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <artifactId>study</artifactId>
+        <groupId>org.cv.sf</groupId>
+        <version>1.0.0</version>
+    </parent>
+    <modelVersion>4.0.0</modelVersion>
+
+    <artifactId>studyJpa</artifactId>
+    <packaging>war</packaging>
+
+
+    <dependencies>
+
+        <!-- 引入自己开发的jar
+            1 实现项目分离为了解耦项目，水平分割
+            2 把项目的业务代码分离成service项目
+            3 这个项目只做cotroller层业务
+            4 1 关于项目解耦：开发的时候很麻烦，依赖的子项目每一个改动
+就需要子项目clean项目，再重新install，然后主项目也需要clean然后再启动，
+解决：这里可以使用热部署的机制解决1 关于项目解耦：开发的时候很麻烦，依赖的子项目每一个改动
+就需要子项目clean项目，再重新install，然后主项目也需要clean然后再启动，
+解决：这里可以使用热部署的机制解决
+这里没有配置热部署，测试太麻烦，所以不用了
+         -->
+<!--        <dependency>
+            <groupId>org.cv.sf</groupId>
+            <artifactId>studyService</artifactId>
+            <version>1.0.0</version>
+        </dependency>-->
+
+        <!-- 引入mysql 驱动依赖
+            1 想要连接mysql数据库，必须要有连接MySQL的驱动依赖
+         -->
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+            <scope>runtime</scope>
+        </dependency>
+
+        <!-- 引入jdbc 运行环境的依赖
+            1 spring data jpa 是对hibernate做了一层封装
+            2 hibernate 框架的底层实现是jdbc,所有数据库框架都是基于此
+            3 所有需要jdbc的库
+         -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-jdbc</artifactId>
+        </dependency >
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-thymeleaf</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.shiro</groupId>
+            <artifactId>shiro-web</artifactId>
+            <version>1.4.0</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.shiro</groupId>
+            <artifactId>shiro-spring</artifactId>
+            <version>1.4.0</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.shiro</groupId>
+            <artifactId>shiro-spring-boot-web-starter</artifactId>
+            <version>1.4.0</version>
+        </dependency>
+
+
+        <!-- 引入spring data jpa
+    1 没有引入依赖 @entity 和 ORM 的注解和功能类是没有办法被引入和使用的
+-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-jpa</artifactId>
+        </dependency>
+
+
+        <!-- https://mvnrepository.com/artifact/org.mybatis/mybatis -->
+<!--
+        <dependency>
+            <groupId>org.mybatis</groupId>
+            <artifactId>mybatis</artifactId>
+            <version>3.5.6</version>
+        </dependency>
+-->
+
+        <!-- Spring Boot Mybatis 依赖 -->
+<!--        <dependency>
+            <groupId>org.mybatis.spring.boot</groupId>
+            <artifactId>mybatis-spring-boot-starter</artifactId>
+            <version>1.2.0</version>
+        </dependency>-->
+
+        <dependency>
+            <groupId>com.baomidou</groupId>
+            <artifactId>mybatis-plus-boot-starter</artifactId>
+            <version>3.3.0</version>
+        </dependency>
+
+        <!-- 集成测试 -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <scope>test</scope>
+        </dependency>
+
+        <!-- 集成Redis
+            这里我们使用 Jedis 当做底层连接客户端，所以需要排除 lettuce，然后引入 Jedis 依赖。
+         -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-redis</artifactId>
+<!--            <exclusions>
+                <exclusion>
+                    <artifactId>lettuce-core</artifactId>
+                    <groupId>io.lettuce</groupId>
+                </exclusion>
+            </exclusions>-->
+        </dependency>
+        <!-- redis 客户端 jedis -->
+<!--
+        <dependency>
+            <groupId>redis.clients</groupId>
+            <artifactId>jedis</artifactId>
+            <version>3.1.0</version>
+        </dependency>
+-->
+
+        <!--阿里巴巴fastjson -->
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>fastjson</artifactId>
+            <version>1.2.35</version>
+        </dependency>
+
+        <!-- dwt 令牌 -->
+        <dependency>
+            <groupId>com.auth0</groupId>
+            <artifactId>java-jwt</artifactId>
+            <version>3.8.1</version>
+        </dependency>
+
+        <!--
+            分页插件
+          1 直接引入，項目无法启动，换了一个version版本就可以了
+          <version>1.2.1</version> 这个版本无法启动项目
+        -->
+        <dependency>
+            <groupId>com.github.pagehelper</groupId>
+            <artifactId>pagehelper-spring-boot-starter</artifactId>
+            <version>1.2.13</version>
+        </dependency>
+
+    </dependencies>
+</project>

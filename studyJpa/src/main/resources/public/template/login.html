@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Login</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- Tell the browser to be responsive to screen width -->
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+    <!-- Bootstrap 3.3.5 -->
+    <link rel="stylesheet" th:href="@{/static/bootstrap/css/bootstrap.min.css}">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+    <!-- Ionicons -->
+    <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+    <!-- Theme style -->
+    <link rel="stylesheet" th:href="@{/static/dist/css/AdminLTE.min.css}">
+    
+    <link rel="stylesheet" th:href="@{/static/css/style.css}">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+        <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <script th:inline="javascript">
+        var ctx = /*[[@{/}]]*/ '';
+        if (parent.window.location.href.indexOf("login") == -1) {
+            parent.window.location.href = ctx + 'login';
+        }
+    </script>
+  </head>
+  <body class="hold-transition login-page">
+    <div class="login-box">
+      <div class="login-logo">
+        <a href="../../index2.html"><b>迈亿国际商城管理平台</b></a>
+      </div><!-- /.login-logo -->
+      <div class="login-box-body">
+        <p class="login-box-msg">登 录</p>
+        <form id="loginForm" th:action="@{/login}" method="post">
+           <div class="alert alert-danger alert-dismissible" role="alert" th:if="${!#strings.isEmpty(errorMessage)}">
+                <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <label th:text="${errorMessage}" />
+            </div>
+          <div class="form-group has-feedback">
+            <input type="text" class="form-control" name="username" autofocus placeholder="账号" 
+            	   data-rule-required="true"
+                   data-msg-required="请输入账号"
+                   aria-describedby="basic-addon-username">
+            <span class="glyphicon glyphicon-user form-control-feedback"></span>
+          </div>
+          <div class="form-group has-feedback">
+            <input type="password" class="form-control" name="password" placeholder="密码" 
+            	   data-rule-required="true"
+                   data-msg-required="请输入密码"
+                   aria-describedby="basic-addon-password">
+            <span class="glyphicon glyphicon-lock form-control-feedback"></span>
+          </div>
+          <div class="row">
+            <div class="col-xs-12">
+              <button type="submit" class="btn btn-success btn-block btn-flat">登 录</button>
+            </div><!-- /.col -->
+          </div>
+        </form>
+		<br>
+        <a href="javascript:void(0);" onclick="resetPwd()">忘记密码？</a><br>
+
+      </div><!-- /.login-box-body -->
+    </div><!-- /.login-box -->
+
+    <!-- jQuery 2.1.4 -->
+    <script th:src="@{/static/plugins/jQuery/jQuery-2.1.4.min.js}"></script>
+    <!-- Bootstrap 3.3.5 -->
+    <script th:src="@{/static/bootstrap/js/bootstrap.min.js}"></script>
+  	<!-- jquery validate  -->
+    <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.17.0/dist/jquery.validate.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.17.0/dist/additional-methods.min.js"></script>
+	<script th:src="@{/static/plugins/jquery-validation/localization/messages_zh.min.js}"></script>
+    <script>
+	    $(function () {
+	    	var ctx = /*[[@{/}]]*/ '';
+	        $("#loginForm").validate();
+	    })
+	    
+	    function resetPwd(){
+	    	window.location.href= ctx+"resetpwd/page";
+	    }
+	</script>
+</body>
+</html>

@@ -1,0 +1,96 @@
+.content{
+	margin-top: -15px;
+}
+.content-pop{
+	margin:0px;
+}
+
+table th{
+	background-color: #c4c4c4;
+}
+
+.form-search .column{
+	padding-left:0px;
+}
+.form-search .column-date{
+	float:left;
+	padding-right:15px;
+	width:14%;
+}
+
+.form-search .control-label{
+	width:auto;
+}
+.form-search .control-label2{
+    margin-bottom: 0;
+    text-align: right;
+	width:auto;
+	padding-top: 7px;
+	padding-left:0px;
+}
+.form-group .control-text{
+	padding-top: 7px;
+}
+
+.form-search .right-toolbar{
+	float:right;margin-right: 5px;
+}
+
+.form-search .btn-search{
+	color: #fff;
+	background-color:#367fa9;
+	margin-left: 15px;
+}
+
+label.error{
+	color:red; 
+}
+
+.toolbar{
+    float:right;
+}
+
+.cbtn{
+	float:left;
+    display:inline-block;
+    width:90px;
+    line-height: 40px;
+    height: 40px;
+    border-radius:5px;
+    margin-right:10px;
+    margin-top:5px;
+    position: relative;
+    text-align: center;
+    cursor:pointer;    
+  }
+.odd span{
+  background-color:aquamarine;
+  box-shadow: 2px 2px 7px 0px #7b7777;
+}
+.even span{
+  background-color:#FCD041;
+  box-shadow: 2px 2px 7px 0px #7b7777;
+}
+  .cbtn:after{
+    content:"";
+    display:inline-block;
+    position:absolute;
+    right:-8px;
+    top: -6px;
+    z-index: 1;
+    width: 15px;
+    height: 15px;
+  }
+  .cbtn input{
+    position:absolute;
+    right:-8px;
+    top:-8px;
+    display:none;
+    z-index: 0;
+  }
+  .on input{
+    display: inline;
+  }
+  .inputcode{
+  	float: left;
+  }

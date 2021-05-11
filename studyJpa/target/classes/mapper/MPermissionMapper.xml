@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--
+namespace: 将dao接口和xml配置文件绑定在一起，将xml文件编译成dao接口的一个具体实现类
+org.apache.ibatis.binding.BindingException: Invalid bound statement (not found): org.cv.sf.repository.mybatis.MPermissionMapper.findPermissionNamesByRoleId
+mapper namespace="org.cv.sf.repository.mybatis
+-->
+<mapper namespace="org.cv.sf.repository.mybatis.MPermissionMapper">
+
+    <!--
+        1 resultMap 只能用resultMap 接收
+        Caused by: java.lang.ClassNotFoundException: Cannot find class: permissionMap
+        <resultMap id="permissionMap" type="org.cv.sf.dto.entity.MPermissionEntity">
+        resultType="permissionMap"
+
+
+    -->
+    <resultMap id="permissionMap" type="org.cv.sf.dto.entity.MPermissionEntity">
+        <id column="id" property="id"/>
+        <result column="CD_PERM" property="cdPerm"/>
+        <result column="NM_DISPLAY" property="nmDisplay"/>
+        <result column="FLG_DISPLAY" property="flgDisplay"/>
+        <result column="FLG_SYSTEM" property="flgSystem"/>
+        <result column="CD_SORT" property="cdSort"/>
+        <result column="FLG_DELETED" property="flgDeleted"/>
+    </resultMap>
+
+    <!--
+        1 返回类型
+        resultMap="java.util.List"
+        Result Maps collection does not contain value for java.util.List
+        2 没有设置返回类型
+        A query was run and no Result Maps were found for the Mapped Statement
+        'org.cv.sf.repository.mybatis.MPermissionMapper.findPermissionNamesByRoleId'.
+         It's likely that neither a Result Type nor a Result Map was specified.
+        3 resultType 返回类型：可以用基本类型接受，也可以用对象，或者list集合接受
+          resultMap 返回map：
+        4 parameterType:参数可以不绑定标签，只要使用的时候取的语法不错
+            jdbcType=LONG
+            No enum constant org.apache.ibatis.type.JdbcType.LONG
+
+            集合参数名称，不用绑定到标签属性上，绑定了也找不到，直接用
+            只需要告诉标签参数是set还是list
+            <foreach collection="roleIds" item="item" index="index"
+            (#{roleIds,jdbcType=INTEGER,mode=IN})
+            org.apache.ibatis.binding.BindingException: Parameter 'roleIds' not found.
+             Available parameters are [collection, list]
+
+    -->
+    <select id="findPermissionNamesByUserId"  resultType="java.lang.String">
+        SELECT
+            p.NAME
+        FROM
+            m_permission p
+        LEFT JOIN M_ROLE_PERMISSION rp on p.id = rp.PERMISSION_ID
+        LEFT JOIN M_ROLE r on r.id = rp.ROLE_ID
+        LEFT JOIN M_USER_ROLE ur ON ur.ROLE_ID = r.id
+        LEFT JOIN M_USER u ON u.id = ur.USER_ID
+        WHERE
+            u.id = #{userId}
+         <!--       (select
+                    rp.PERMISSION_ID
+                FROM
+                    M_ROLE_PERMISSION rp
+                WHERE
+                    rp.role_id in (2,3)
+                )-->
+<!--            <foreach collection="list" item="item" index="index"
+                     open="(" separator="," close=")" >
+                #{item}
+            </foreach>-->
+            <!--(#{roleIds,jdbcType=INTEGER,mode=IN})-->
+            <!--p.id in (2,3)-->
+    </select>
+    
+    <select id="findPagePermission" resultMap="permissionMap">
+        select
+            *
+        from
+            m_permission
+    </select>
+</mapper>
