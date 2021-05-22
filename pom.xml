@@ -16,6 +16,7 @@
         <module>studyMybatis</module>
         <module>studyServiceJpa2</module>
         <module>studyActiviti</module>
+        <module>studyDemo</module>
     </modules>
 
     <parent>
